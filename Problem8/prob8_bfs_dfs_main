@@ -1,0 +1,84 @@
+from collections import deque
+
+# Sample graph
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D'],
+    'C': ['E'],
+    'D': ['F'],
+    'E': ['F'],
+    'F': []
+}
+
+# Breadth First Search
+def bfs(graph, start, goal):
+    queue = deque([[start]])
+    visited = set()
+    explored = 0
+
+    while queue:
+        path = queue.popleft()
+        node = path[-1]
+        explored += 1
+
+        if node == goal:
+            return path, explored
+
+        if node not in visited:
+            visited.add(node)
+
+            for neighbor in graph[node]:
+                new_path = path + [neighbor]
+                queue.append(new_path)
+
+    return None, explored
+
+
+# Depth First Search
+def dfs(graph, start, goal):
+    stack = [[start]]
+    visited = set()
+    explored = 0
+
+    while stack:
+        path = stack.pop()
+        node = path[-1]
+        explored += 1
+
+        if node == goal:
+            return path, explored
+
+        if node not in visited:
+            visited.add(node)
+
+            for neighbor in graph[node]:
+                new_path = path + [neighbor]
+                stack.append(new_path)
+
+    return None, explored
+
+
+# Main Program
+start = input("Enter Start Node: ").strip().upper()
+goal = input("Enter Goal Node: ").strip().upper()
+
+if start in graph and goal in graph:
+    bfs_path, bfs_count = bfs(graph, start, goal)
+    dfs_path, dfs_count = dfs(graph, start, goal)
+
+    print("\n--- Results ---")
+
+    if bfs_path:
+        print("BFS Path:", " -> ".join(bfs_path))
+        print("BFS Nodes Explored:", bfs_count)
+    else:
+        print("BFS: No Path Found")
+
+    if dfs_path:
+        print("DFS Path:", " -> ".join(dfs_path))
+        print("DFS Nodes Explored:", dfs_count)
+    else:
+        print("DFS: No Path Found")
+
+else:
+    print("Invalid Start or Goal Node")
