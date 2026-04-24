@@ -81,4 +81,4 @@ if start in graph and goal in graph:
         print("DFS: No Path Found")
 
 else:
-    print("Invalid Start or Goal Node")
+    print("Error: Invalid Start or Goal Node")
