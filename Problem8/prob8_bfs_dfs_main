@@ -59,6 +59,8 @@ def dfs(graph, start, goal):
 
 
 # Main Program
+print("Available Nodes:", ", ".join(graph.keys()))
+
 start = input("Enter Start Node: ").strip().upper()
 goal = input("Enter Goal Node: ").strip().upper()
 
@@ -69,7 +71,7 @@ if start in graph and goal in graph:
     print("\n--- Results ---")
 
     if bfs_path:
-        print("BFS Path:", " -> ".join(bfs_path))
+        print("BFS Shortest Path:", " -> ".join(bfs_path))
         print("BFS Nodes Explored:", bfs_count)
     else:
         print("BFS: No Path Found")
