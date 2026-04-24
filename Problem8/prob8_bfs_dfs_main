@@ -76,11 +76,16 @@ if start in graph and goal in graph:
     else:
         print("BFS: No Path Found")
 
-    if dfs_path:
+        if dfs_path:
         print("DFS Path:", " -> ".join(dfs_path))
         print("DFS Nodes Explored:", dfs_count)
     else:
         print("DFS: No Path Found")
 
+    if bfs_path:
+        print("BFS Path Length:", len(bfs_path) - 1)
+
+    if dfs_path:
+        print("DFS Path Length:", len(dfs_path) - 1)
 else:
     print("Error: Invalid Start or Goal Node")
